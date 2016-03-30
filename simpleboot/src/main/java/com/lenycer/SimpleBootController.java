@@ -17,6 +17,7 @@ public class SimpleBootController {
 	@RequestMapping(value="/")
 	public Map<String, String> getSimple() {
 		sampleBeans.getTest();
+		
 		Map<String, String> simple = new HashMap<>();
 		simple.put("lenycer", "hello");
 		return simple;
