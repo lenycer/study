@@ -7,7 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-ddd
-${name}
+${simple.id}
+<br/>
+${simple.name}
+<br/>
 </body>
 </html>

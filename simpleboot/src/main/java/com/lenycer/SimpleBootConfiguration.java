@@ -1,8 +1,14 @@
 package com.lenycer;
 
+import javax.sql.DataSource;
+
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import com.lenycer.sample.SampleBeans;
 
@@ -12,10 +18,38 @@ import com.lenycer.sample.SampleBeans;
  *
  */
 @Configuration
+@MapperScan(value={"com.lenycer.simple"})
 public class SimpleBootConfiguration {
 
 	@Bean
 	public SampleBeans sampleBeans() {
 		return new SampleBeans();
 	}
+//자동으로 초기화 파일 읽음.	
+//	@Bean
+//    public DataSource dataSource() {
+//        return new EmbeddedDatabaseBuilder()
+//            //.setType(EmbeddedDatabaseType.HSQL)
+//            .addScript("classpath:schema.sql")
+//            .build();
+//    }
+	
+	@Bean
+	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+		sqlSessionFactoryBean.setDataSource(dataSource);
+		return sqlSessionFactoryBean.getObject();
+	}
+	
+	
+	//properties로 대체
+	/*
+	@Bean
+	public InternalResourceViewResolver getInternalResourceViewResolver() {
+	    InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+	    resolver.setPrefix("/WEB-INF/jsp/");
+	    resolver.setSuffix(".jsp");
+	    return resolver;
+	}
+	*/
 }
