@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lenycer.simple.Simple;
 import com.lenycer.simple.SimpleService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
 public class SimpleController {
 	
@@ -26,6 +29,8 @@ public class SimpleController {
 
 	@RequestMapping(value="/simple", method=RequestMethod.GET)
 	public Simple simple(Simple condition) {
+		log.debug("log test");
+		log.info("log info test");
 		return simpleService.getSimple(condition.getId());
 	}
 	
