@@ -11,6 +11,11 @@ import com.lenycer.simple.Simple;
 @RequestMapping(value="/view")
 public class SimpleViewController {
 
+	/**
+	 * jsp view test 
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/simple", method=RequestMethod.GET)
 	public String simple(Model model) {
 		Simple simple = new Simple();

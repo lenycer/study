@@ -10,8 +10,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
-import com.lenycer.sample.SampleBeans;
-
 /**
  * @SpringBootApplication 에 @Configuration가 존재하지만 test 및 설정 유형별 관리를 위해 뺄 수도 있음.
  * @author 현석
@@ -21,11 +19,6 @@ import com.lenycer.sample.SampleBeans;
 @MapperScan(value={"com.lenycer.simple"})
 public class SimpleBootConfiguration {
 
-	@Bean
-	public SampleBeans sampleBeans() {
-		return new SampleBeans();
-	}
-	
 	//classpath root에 있을 시 자동으로 초기화 파일 읽음.	
 	@Bean
     public DataSource dataSource() {

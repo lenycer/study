@@ -20,6 +20,10 @@ public class SimpleController {
 	
 	@Autowired SimpleService simpleService;
 	
+	/**
+	 * controller test
+	 * @return
+	 */
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public Map<String, String> simpleMap() {
 		Map<String, String> map = new HashMap<>();
@@ -27,6 +31,11 @@ public class SimpleController {
 		return map;
 	}
 
+	/**
+	 * select 단건.
+	 * @param condition
+	 * @return
+	 */
 	@RequestMapping(value="/simple", method=RequestMethod.GET)
 	public Simple simple(Simple condition) {
 		log.debug("log test");
@@ -35,6 +44,7 @@ public class SimpleController {
 	}
 	
 	/**
+	 * insert
 	 * 일반적인 form parameter
 	 * @param simple
 	 * @return
@@ -45,6 +55,7 @@ public class SimpleController {
 	}
 	
 	/**
+	 * insert
 	 * json 형태로 받기 위해 @RequestBody 처리. 
 	 * Contents-type : application/json 필요
 	 * @param simple
