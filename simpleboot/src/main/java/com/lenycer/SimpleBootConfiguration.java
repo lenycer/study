@@ -25,14 +25,15 @@ public class SimpleBootConfiguration {
 	public SampleBeans sampleBeans() {
 		return new SampleBeans();
 	}
-//자동으로 초기화 파일 읽음.	
-//	@Bean
-//    public DataSource dataSource() {
-//        return new EmbeddedDatabaseBuilder()
-//            //.setType(EmbeddedDatabaseType.HSQL)
-//            .addScript("classpath:schema.sql")
-//            .build();
-//    }
+	
+	//classpath root에 있을 시 자동으로 초기화 파일 읽음.	
+	@Bean
+    public DataSource dataSource() {
+        return new EmbeddedDatabaseBuilder()
+            .setType(EmbeddedDatabaseType.HSQL)
+            .addScript("classpath:db/schema.sql")
+            .build();
+    }
 	
 	@Bean
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
