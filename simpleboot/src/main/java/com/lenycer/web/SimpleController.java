@@ -5,9 +5,12 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lenycer.domain.simple.Simple;
@@ -71,13 +74,28 @@ public class SimpleController {
 	}
 	
 	/**
-	 * error 발생
+	 * error 
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping(value="/error/resolver", method=RequestMethod.GET)
+	@RequestMapping(value="/rest/error", method=RequestMethod.GET)
 	public void error() throws Exception {
-		throw new Exception("resolver error");
+		throw new Exception("rest error");
 	}
 	
+	/**
+	 * error json return
+	 * @ExceptionHandler : only one controller 
+	 * @ControllerAdvice : to apply all controller
+	 * @param e
+	 * @return
+	 */
+//	@ExceptionHandler({Exception.class})
+//	@ResponseStatus(HttpStatus.BAD_REQUEST) //optional
+//	public Simple handleError(Exception e) {
+//		Simple simple = new Simple();
+//		simple.setId(9999);
+//		simple.setName(e.getMessage());
+//		return simple;
+//	}
 }
