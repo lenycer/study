@@ -1,4 +1,4 @@
-package com.lenycer.simple;
+package com.lenycer.domain.simple;
 
 import lombok.Data;
 

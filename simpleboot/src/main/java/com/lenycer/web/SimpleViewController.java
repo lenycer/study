@@ -1,11 +1,11 @@
-package com.lenycer;
+package com.lenycer.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.lenycer.simple.Simple;
+import com.lenycer.domain.simple.Simple;
 
 @Controller
 @RequestMapping(value="/view")

@@ -1,16 +1,17 @@
-package com.lenycer;
+package com.lenycer.web;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.lenycer.simple.Simple;
-import com.lenycer.simple.SimpleService;
+import com.lenycer.domain.simple.Simple;
+import com.lenycer.service.simple.SimpleService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,6 +21,9 @@ public class SimpleController {
 	
 	@Autowired SimpleService simpleService;
 	
+	@Value("${name}")
+	private String name;
+	
 	/**
 	 * controller test
 	 * @return
@@ -27,7 +31,7 @@ public class SimpleController {
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public Map<String, String> simpleMap() {
 		Map<String, String> map = new HashMap<>();
-		map.put("lenycer", "test");
+		map.put("name", name);
 		return map;
 	}
 

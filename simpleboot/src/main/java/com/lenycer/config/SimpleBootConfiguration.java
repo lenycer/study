@@ -1,4 +1,4 @@
-package com.lenycer;
+package com.lenycer.config;
 
 import javax.sql.DataSource;
 
@@ -16,7 +16,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
  *
  */
 @Configuration
-@MapperScan(value={"com.lenycer.simple"})
+@MapperScan(value={"com.lenycer.service"})
 public class SimpleBootConfiguration {
 
 	//classpath root에 있을 시 자동으로 초기화 파일 읽음.	

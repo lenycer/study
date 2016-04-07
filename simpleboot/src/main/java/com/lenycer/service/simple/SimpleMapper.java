@@ -1,8 +1,10 @@
-package com.lenycer.simple;
+package com.lenycer.service.simple;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+
+import com.lenycer.domain.simple.Simple;
 
 public interface SimpleMapper {
 

@@ -1,7 +1,9 @@
-package com.lenycer.simple;
+package com.lenycer.service.simple;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.lenycer.domain.simple.Simple;
 
 @Service
 public class SimpleService {
