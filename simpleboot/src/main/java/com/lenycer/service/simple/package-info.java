@@ -1,5 +1,5 @@
 /**
- * 
+ * simple service package
  */
 /**
  * @author 현석

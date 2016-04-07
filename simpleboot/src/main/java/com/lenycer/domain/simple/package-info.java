@@ -1,5 +1,5 @@
 /**
- * 
+ * simple domain package
  */
 /**
  * @author 현석
