@@ -1,5 +1,7 @@
 package com.lenycer.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -15,8 +17,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private DataSource dataSource;
+	
 	/**
-	 * inMemory로 login test
+	 * inMemory로 login test 시 inMemoryAuthentication()와 withUser로 처리 가능
 	 * security dependency에 이미 /login form이 세팅되어 있음. http://localhost/login 으로 로그인 성공 시 default 설정인 htpp://localhost/ 로 이동
 	 * @param auth
 	 * @throws Exception
@@ -24,8 +29,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-			.inMemoryAuthentication()
-				.withUser("lenycer").password("asdf").roles("ADMIN");
+//			.inMemoryAuthentication()
+			.jdbcAuthentication()
+			.dataSource(dataSource);
+//				.usersByUsernameQuery("select username, password from users where username=?") //db구조가 security세팅과 다르면 user와 authority query작성 필요
+//				.authoritiesByUsernameQuery("select username, authority from authorities where username=?");
+//				.withUser("lenycer").password("asdf").roles("ADMIN");
 	}
 	
 	/**
