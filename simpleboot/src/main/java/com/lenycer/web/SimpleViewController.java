@@ -28,6 +28,16 @@ public class SimpleViewController {
 	}
 	
 	/**
+	 * user view
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/user", method=RequestMethod.GET)
+	public String user(Model model) {
+		return "user";
+	}
+	
+	/**
 	 * view error
 	 * @throws Exception
 	 */

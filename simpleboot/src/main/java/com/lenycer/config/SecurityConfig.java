@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //			.inMemoryAuthentication()
 			.jdbcAuthentication()
 			.dataSource(dataSource);
-//				.usersByUsernameQuery("select username, password from users where username=?") //db구조가 security세팅과 다르면 user와 authority query작성 필요
+//				.usersByUsernameQuery("select username, password, enabled from users where username=?") //db구조가 security세팅과 다르면 user와 authority query작성 필요
 //				.authoritiesByUsernameQuery("select username, authority from authorities where username=?");
 //				.withUser("lenycer").password("asdf").roles("ADMIN");
 	}
@@ -46,7 +46,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 //				.antMatchers("/resources/**", "/signup", "/about").permitAll() //multi로도 가능 없지만 테스트로  
 //				.antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')") //multi access
-				.antMatchers("/view/simple/**").hasRole("ADMIN") 
+				.antMatchers("/view/simple/**").hasRole("ADMIN")
+				.antMatchers("/view/user/**").hasAnyRole("USER", "ADMIN")
 				.antMatchers("/**").permitAll()
 				//.anyRequest().authenticated()
 				.and()

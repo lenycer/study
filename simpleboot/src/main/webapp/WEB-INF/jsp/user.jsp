@@ -8,10 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-${simple.id}
-<br/>
-${simple.name}
-<br/>
+USER PAGE
 <sec:authentication property="principal.username"/> hi !!
 <br/>
 <form action="/logout" method="post">      
