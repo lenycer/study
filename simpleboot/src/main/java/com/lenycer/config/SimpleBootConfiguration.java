@@ -35,7 +35,6 @@ public class SimpleBootConfiguration {
 		return sqlSessionFactoryBean.getObject();
 	}
 	
-	
 	//properties로 대체
 	/*
 	@Bean

@@ -9,7 +9,10 @@
 </head>
 <body>
 USER PAGE
+<br/>
 <sec:authentication property="principal.username"/> hi !!
+<br/>
+<sec:authentication property="principal.nick"/>
 <br/>
 <form action="/logout" method="post">      
 	<input type="hidden"                        

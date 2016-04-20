@@ -11,11 +11,12 @@ CREATE TABLE USERS
 (
 	username			varchar(255),
 	password			varchar(255),
-	enabled				boolean
+	enabled				boolean,
+	nick			varchar(255)
 );
 
-insert into users (username, password, enabled) values ('cvic', 'asdf', true);
-insert into users (username, password, enabled) values ('test', 'asdf', true);
+insert into users (username, password, enabled, nick) values ('cvic', 'asdf', true, 'aacc');
+insert into users (username, password, enabled, nick) values ('test', 'asdf', true, 'bbdd');
 
 CREATE TABLE AUTHORITIES
 (

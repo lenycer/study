@@ -3,10 +3,12 @@ package com.lenycer.config;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.encoding.ShaPasswordEncoder;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * SpringSecurity config
@@ -19,6 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DataSource dataSource;
+	
+	@Autowired
+	private UserDetailsService userDetailsService;
 	
 	/**
 	 * inMemory로 login test 시 inMemoryAuthentication()와 withUser로 처리 가능
@@ -73,5 +78,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //				.and()
 				
 			.httpBasic(); //http 기반 인증 허용
+	}
+	
+	/**
+	 * Authentication Provider 설정을 통해 userDetailsService 및 패스워드 암호화를 설정할 수도 있고 
+	 * 아래와 같이 override하여 직접 지정 가능함.
+	 */
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+			.userDetailsService(userDetailsService)
+			.passwordEncoder(new ShaPasswordEncoder(256));
 	}
 }
