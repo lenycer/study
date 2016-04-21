@@ -88,6 +88,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
 			.userDetailsService(userDetailsService);
-//			.passwordEncoder(new ShaPasswordEncoder(256));
+//			.passwordEncoder(new ShaPasswordEncoder(256)); //password 암호화적용하려면 회원가입시에도 암호화 하여 넣어야 함.
 	}
 }

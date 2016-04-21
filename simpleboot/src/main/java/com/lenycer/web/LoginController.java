@@ -54,6 +54,7 @@ public class LoginController {
 		List<String> role = new ArrayList<>();
 		role.add(authority);
 		simpleUser.setRole(role);
+		//TODO password 암호화 하여 insert 할 필요 있음. 암호화 하여 넣을거면 SecurityConfig에서도 auth.passwordEncoder 적용을 해야 함.
 		
 		SimpleUserService.addSimpleUser(simpleUser);
 		
