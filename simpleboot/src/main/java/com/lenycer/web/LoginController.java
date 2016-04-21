@@ -1,11 +1,19 @@
 package com.lenycer.web;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.lenycer.domain.simple.Simple;
+import com.lenycer.domain.user.SimpleUser;
+import com.lenycer.domain.user.SimpleUserDetail;
+import com.lenycer.service.user.SimpleUserService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,8 +26,41 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class LoginController {
 	
+	@Autowired
+	private SimpleUserService SimpleUserService;
+	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String login() {
 		return "login";
+	}
+	
+	/**
+	 * 회원 가입 페이지
+	 * @return
+	 */
+	@RequestMapping(value="/register", method=RequestMethod.GET)
+	public String register() {
+		return "register";
+	}
+	
+	/**
+	 * 회원가입 및 인증 저장
+	 * @param simpleUser
+	 * @param authority
+	 * @return
+	 */
+	@RequestMapping(value="/register/user", method=RequestMethod.POST)
+	public String registerUSer(SimpleUser simpleUser, String authority) {
+		List<String> role = new ArrayList<>();
+		role.add(authority);
+		simpleUser.setRole(role);
+		
+		SimpleUserService.addSimpleUser(simpleUser);
+		
+		//인증정보를 생성하여 인증 저장
+		SimpleUserDetail simpleUserDetail = new SimpleUserDetail(simpleUser);
+		Authentication authentication = new UsernamePasswordAuthenticationToken(simpleUserDetail, null, simpleUserDetail.getAuthorities());
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		return "redirect:/";
 	}
 }

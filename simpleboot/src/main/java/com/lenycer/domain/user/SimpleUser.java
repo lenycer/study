@@ -15,5 +15,7 @@ public class SimpleUser {
 	
 	private List<String> role;
 	
+//	private String role;
+	
 	private String nick;
 }
