@@ -1,14 +1,18 @@
 package com.lenycer.web;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.lenycer.domain.simple.Simple;
+import com.lenycer.domain.user.SimpleUserDetail;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping(value="/view")
 public class SimpleViewController {
@@ -34,6 +38,11 @@ public class SimpleViewController {
 	 */
 	@RequestMapping(value="/user", method=RequestMethod.GET)
 	public String user(Model model) {
+		//spring security authentication 정보를 가져와 확인
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		SimpleUserDetail simpleUserDetail = (SimpleUserDetail) authentication.getPrincipal();
+		log.debug("username : {}", simpleUserDetail.getUsername());
+		log.debug("nick : {}", simpleUserDetail.getNick());
 		return "user";
 	}
 	
