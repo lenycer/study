@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		log.debug("Test SimpleUserServiceImpl============");
+		log.debug("Test SimpleUserServiceImpl===========");
 		SimpleUser simpleUser = simpleUserMapper.selectSimpleUser(username);
 		if(simpleUser != null) {
 			simpleUser.setRole(simpleUserMapper.selectSimpleUserAuthorites(username));
