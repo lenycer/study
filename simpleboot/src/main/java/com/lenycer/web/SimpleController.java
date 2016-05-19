@@ -5,17 +5,17 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.lenycer.domain.simple.Simple;
 import com.lenycer.service.simple.SimpleService;
 
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -43,6 +43,11 @@ public class SimpleController {
 	 * @param condition
 	 * @return
 	 */
+	@ApiOperation(value = "simple", nickname = "getSimple")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = "id", value = "User's pk", required = false, dataType = "Integer", paramType = "query", defaultValue="1"),
+        @ApiImplicitParam(name = "name", value = "User's name", required = false, dataType = "string", paramType = "query", defaultValue="lenycer")
+      })
 	@RequestMapping(value="/simple", method=RequestMethod.GET)
 	public Simple simple(Simple condition) {
 		log.debug("log test");
